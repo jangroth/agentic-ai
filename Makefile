@@ -45,4 +45,8 @@ install:
 list-skills:
 	@scripts/list_skills.sh
 
-.PHONY: help install skills
+## List all available commands across all scopes
+list-commands:
+	@scripts/list_commands.sh
+
+.PHONY: help install list-skills list-commands

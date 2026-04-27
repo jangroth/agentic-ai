@@ -48,6 +48,6 @@ while IFS= read -r -d '' skills_dir; do
         title=$(extract_title "${skill_dir}")
         print_row "${project}" "${skill}" "${title}"
     done
-done < <(find "${PROJECTS_DIR}" -maxdepth 3 -type d -name skills -path "*/.claude/skills" -print0 2>/dev/null | sort -z)
+done < <(find "${PROJECTS_DIR}" -maxdepth 4 -type d -name skills -path "*/.claude/skills" -print0 2>/dev/null | sort -z)
 
 echo ""
