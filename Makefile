@@ -41,12 +41,8 @@ install:
 	scripts/install.sh
 
 ###Skills
-## List all available skills across all scopes
-list-skills:
-	@scripts/list_skills.sh
+## List all skills and commands across all scopes, ordered by scope
+list-all:
+	@scripts/list_all.sh
 
-## List all available commands across all scopes
-list-commands:
-	@scripts/list_commands.sh
-
-.PHONY: help install list-skills list-commands
+.PHONY: help install list-all
