@@ -40,9 +40,17 @@ help:
 install:
 	scripts/install.sh
 
+## Same as install, but overwrite ~/.claude/settings.json even if it has drifted from the repo
+install-force:
+	scripts/install.sh --force
+
+## Show what install would do/conflict on, without changing anything
+install-dry-run:
+	scripts/install.sh --dry-run
+
 ###Skills
 ## List all skills and commands across all scopes, ordered by scope
 list-all:
 	@scripts/list_all.sh
 
-.PHONY: help install list-all
+.PHONY: help install install-force install-dry-run list-all
