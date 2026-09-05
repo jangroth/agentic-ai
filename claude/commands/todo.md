@@ -9,7 +9,7 @@ The user wants to add this TODO: $ARGUMENTS
 
 Run:
 ```
-gh issue create --title "$ARGUMENTS" --label todo --assignee "@me" --body ""
+gh issue create --title "$ARGUMENTS" --label todo --label agent-safe --assignee "@me" --body ""
 ```
 
 Then confirm with the issue URL.
