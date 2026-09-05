@@ -120,13 +120,12 @@ if [ -n "$transcript_path" ] && [ -f "$transcript_path" ]; then
     agent_total=$(echo "$all_tools" | grep -c '^Agent$' 2>/dev/null || echo 0)
     mcp_count=$(echo "$all_tools" | grep -c '^mcp__' 2>/dev/null || echo 0)
 
-    # Count completed agents (tool results for Agent calls)
-    agent_done=$(jq -r '
-      select(.type == "tool") |
-      .content[]? |
-      select(.type == "tool_result") |
-      .tool_use_id
-    ' "$transcript_path" 2>/dev/null | wc -l | tr -d ' ')
+    # Count completed agents (tool results whose tool_use_id belongs to an Agent call)
+    agent_done=$(jq -s -r '
+      ([.[] | select(.type == "assistant") | .message.content[]? | select(.type == "tool_use" and .name == "Agent") | .id]) as $agent_ids |
+      [.[] | select(.type == "user") | .message.content[]? | select(.type == "tool_result") | select(.tool_use_id as $t | $agent_ids | index($t) != null)] | length
+    ' "$transcript_path" 2>/dev/null)
+    agent_done=${agent_done:-0}
     agent_active=$(( agent_total - agent_done ))
     [ "$agent_active" -lt 0 ] && agent_active=0
   fi
