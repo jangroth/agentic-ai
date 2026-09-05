@@ -28,7 +28,7 @@ Skills, commands, and `statusline-command.sh` are symlinked, so edits take effec
 
 ### Machine-specific settings
 
-Values that depend on this machine/network (e.g. a custom `ANTHROPIC_BASE_URL` or an MCP server pointing at a private host) don't belong in the shared `settings.json`. Instead:
+Values that depend on this machine/network — a custom `ANTHROPIC_BASE_URL`, an MCP server pointing at a private host, or a hook command referencing a path/plugin only installed on this machine (e.g. `~/.claude/hooks/some-plugin-hook.mjs`) — don't belong in the shared `settings.json`. Instead:
 
 1. Copy the template: `cp claude/settings.local.template.json claude/settings.local.json`
 2. Edit `claude/settings.local.json` for this machine — it's gitignored and merged on top of the shared config by `make install`.
