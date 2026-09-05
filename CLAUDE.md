@@ -26,7 +26,7 @@ claude/
 
 **Skills** (`skills/*/skill.md`) define multi-step workflows invoked as slash commands. Each skill declares its own `allowed-tools` frontmatter to restrict tool access.
 
-**Commands** (`commands/*.md`) are lightweight Claude Code commands; they can disable model invocation with `disable-model: true` for pure tool-use flows.
+**Commands** (`commands/*.md`) are lightweight Claude Code commands; they can disable model invocation with `disable-model-invocation: true` for pure tool-use flows.
 
 **statusline-command.sh** receives JSON from the Claude Code harness on stdin and renders ANSI-colored output for the terminal status line.
 
