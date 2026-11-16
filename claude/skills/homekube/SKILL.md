@@ -42,7 +42,14 @@ This is the entry point for "I built something, now host it on homekube":
 
 ## Stack (compatibility-relevant)
 
-Kubernetes v1.36.1 (kubeadm) · Cilium 1.19.4 (CNI + LB-IPAM/L2) · Longhorn 1.11 (CSI/storage class) · ArgoCD.
+Kubernetes (kubeadm) · Cilium (CNI + LB-IPAM/L2, held) · Longhorn (CSI/storage class) · ArgoCD. Versions: `homekube-main/ansible/group_vars/all.yml` and `homekube-apps/applications/**/*.yaml` → `targetRevision`.
+
+## Images
+
+homekube builds no images. Images built for it (Coder workspace, Hermes) come from [`jangroth/homekube-bakery`](https://github.com/jangroth/homekube-bakery), public on GHCR, `linux/arm64`.
+
+- What an image guarantees is in the bakery's `CONTRACT.md`. Request changes as issues on the bakery repo, not on the homekube tracker.
+- Pin by tag and digest with a `# renovate:` comment. Tags are immutable semver; a major bump means the contract broke, review by hand.
 
 ## Working conventions
 
