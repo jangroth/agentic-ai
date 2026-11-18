@@ -20,8 +20,9 @@ No build step. Dependencies: `bash`, `jq`, `git`, `gh`, `bc`.
 claude/
 ├── settings.json            # Main Claude Code config (statusLine, permissions, etc.)
 ├── statusline-command.sh    # Status bar script: parses harness JSON, renders 3-line display
+├── CLAUDE.md                # User-level instructions, symlinked to ~/.claude/CLAUDE.md
 ├── commands/                # Custom slash commands (e.g. /todo)
-└── skills/                  # Reusable workflow skills (e.g. /pr)
+└── skills/                  # Skills (e.g. projects: cross-repo context)
 ```
 
 **Skills** (`skills/*/skill.md`) define multi-step workflows invoked as slash commands. Each skill declares its own `allowed-tools` frontmatter to restrict tool access.

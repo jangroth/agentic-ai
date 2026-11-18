@@ -18,11 +18,12 @@ claude/
 ├── settings.local.template.json  # Reference/starter for machine-specific overrides
 ├── settings.local.json         # Gitignored — this machine's overrides (not tracked)
 ├── statusline-command.sh       # Terminal status bar: model, context, git, cost, agents
+├── CLAUDE.md                   # User-level instructions for all projects (~/.claude/CLAUDE.md)
 ├── commands/                   # Custom slash commands (e.g. /todo)
-└── skills/                     # Reusable workflow skills (e.g. /pr)
+└── skills/                     # Skills (e.g. projects: cross-repo context)
 ```
 
-Skills, commands, and `statusline-command.sh` are symlinked, so edits take effect immediately.
+Skills, commands, `statusline-command.sh`, and `CLAUDE.md` are symlinked, so edits take effect immediately.
 
 `settings.json` is different: `~/.claude/settings.json` is *generated* by merging `claude/settings.json` (shared, committed) with `claude/settings.local.json` (machine-specific, gitignored) via `jq`, so it can't just be symlinked. **Re-run `make install` after editing either file.**
 
