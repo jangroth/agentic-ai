@@ -4,35 +4,47 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-This is a personal Claude Code configuration repository. It version-controls skills, commands, and settings, then symlinks them into `~/.claude/` via a Makefile.
+Personal Claude Code configuration: skills, commands, settings, plugins and user-level `CLAUDE.md`, installed into `~/.claude/` by `make install`.
 
 ## Setup
 
 ```bash
-make install   # symlinks claude/* into ~/.claude/
+make install           # link claude/* into ~/.claude/, generate settings.json, install plugins
+make install-dry-run   # show planned actions and conflicts, change nothing
+make install-force     # overwrite a drifted ~/.claude/settings.json (keeps a .bak)
+make list-all          # list skills, commands, agents and plugins across scopes; exit 1 on broken links
 ```
 
-No build step. Dependencies: `bash`, `jq`, `git`, `gh`, `bc`.
+No build step. Requires `jq`; `git`, `bc`, `gh` and `claude` are checked and warned about. New-machine steps are in `README.md`.
 
 ## Architecture
 
 ```
 claude/
-├── settings.json            # Main Claude Code config (statusLine, permissions, etc.)
-├── statusline-command.sh    # Status bar script: parses harness JSON, renders 3-line display
-├── CLAUDE.md                # User-level instructions, symlinked to ~/.claude/CLAUDE.md
-├── commands/                # Custom slash commands (e.g. /todo)
-└── skills/                  # Skills (e.g. projects: cross-repo context)
+├── settings.json                 # Shared Claude Code config, incl. enabledPlugins and their marketplaces
+├── settings.local.json           # Gitignored; this machine's overrides
+├── settings.local.template.json  # Starter for settings.local.json
+├── statusline-command.sh         # Status bar: parses harness JSON, renders 3-line display
+├── CLAUDE.md                     # User-level instructions (~/.claude/CLAUDE.md)
+├── commands/                     # Slash commands (e.g. /todo)
+└── skills/                       # Skills (e.g. projects: cross-repo context)
+scripts/
+├── install.sh                    # Backs the install targets
+└── list_all.sh                   # Backs list-all
 ```
 
-**Skills** (`skills/*/skill.md`) define multi-step workflows invoked as slash commands. Each skill declares its own `allowed-tools` frontmatter to restrict tool access.
+**Skills** (`skills/*/SKILL.md`) are workflows or context, loaded when their `description` matches or invoked as `/<name>`.
 
-**Commands** (`commands/*.md`) are lightweight Claude Code commands; they can disable model invocation with `disable-model-invocation: true` for pure tool-use flows.
+**Commands** (`commands/*.md`) are prompts run as `/<name>`. `disable-model-invocation: true` makes one user-invoked only.
 
-**statusline-command.sh** receives JSON from the Claude Code harness on stdin and renders ANSI-colored output for the terminal status line.
+**settings.json** is generated: `install.sh` merges `claude/settings.json` with `claude/settings.local.json` and refuses to overwrite a live file that has drifted. Everything else is symlinked.
+
+**Plugins** are declared, not vendored: `install.sh` adds each `extraKnownMarketplaces` entry and installs each `enabledPlugins` entry missing at user scope.
 
 ## Key Conventions
 
-- Skills explicitly list allowed tools (e.g. `allowed-tools: Bash(git:*), Bash(gh:*)`) — keep these minimal.
-- The `install` Makefile target uses symlinks, so edits in this repo take effect immediately without re-running `make install`.
-- GitHub workflows use the `gh` CLI exclusively (no direct API calls).
+- Edits to skills, commands, `statusline-command.sh` and `CLAUDE.md` are live immediately; edits to either settings file need `make install`.
+- Machine- or network-specific values (gateway URL, local hook paths, `autoMode` context) go in `settings.local.json`, never the shared `settings.json`.
+- A plugin from a marketplace other than the built-in directory needs its marketplace in `extraKnownMarketplaces`, or fresh installs can't resolve it.
+- `allowed-tools` only when a skill needs to pre-approve tools; keep it minimal.
+- GitHub operations use the `gh` CLI.
