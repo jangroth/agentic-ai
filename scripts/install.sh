@@ -30,6 +30,7 @@ for cmd in "${REPO_DIR}/claude/commands/"/*; do
 done
 PLANNED+=(
     "${REPO_DIR}/claude/statusline-command.sh|${CLAUDE_DIR}/statusline-command.sh"
+    "${REPO_DIR}/claude/CLAUDE.md|${CLAUDE_DIR}/CLAUDE.md"
 )
 
 # Classify each planned symlink. A real (non-symlink) file/dir at dst is content that
