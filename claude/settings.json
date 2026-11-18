@@ -1,11 +1,12 @@
 {
-  "model": "sonnet",
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
-    "context-mode@context-mode": true
+    "context-mode@context-mode": true,
+    "mattpocock-skills@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "context-mode": {
@@ -16,5 +17,7 @@
     }
   },
   "tui": "fullscreen",
-  "editorMode": "vim"
+  "editorMode": "vim",
+  "agentPushNotifEnabled": true,
+  "feedbackDrafts": "off"
 }
