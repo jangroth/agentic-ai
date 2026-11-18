@@ -8,7 +8,15 @@ Personal [Claude Code](https://claude.ai/code) configuration — version-control
 make install
 ```
 
-Requires: `bash`, `jq`, `git`, `gh`, `bc`.
+Requires `jq`. Warns if `git`, `bc` (status line), `gh` (`/todo`) or `claude` (plugins) is missing.
+
+Besides linking and generating settings, `make install` adds the marketplaces in `extraKnownMarketplaces` and installs every plugin in `enabledPlugins` at user scope. Re-running it is safe.
+
+### New machine
+
+1. Install the Claude Code CLI, `jq`, `gh` and `bc`.
+2. Create `claude/settings.local.json` (see [Machine-specific settings](#machine-specific-settings)), so the first run already has this machine's gateway URL.
+3. Run `make install` **before starting Claude Code**. Claude Code writes its own `~/.claude/settings.json` on first run, which the installer then refuses to overwrite. If that has already happened, use `make install-force` (keeps a `.bak`).
 
 ## Structure
 
