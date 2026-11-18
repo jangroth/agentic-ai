@@ -10,6 +10,6 @@ File this TODO as a GitHub issue: $ARGUMENTS
 3. Label `needs-triage` only. If the repo lacks it, create it: `gh label create needs-triage --description "Maintainer needs to evaluate this issue"`.
 4. Assign `@me`.
 
-Never add `ready-for-agent` or `agent-safe`; that's for `/triage`.
+Never add `ready-for-agent`; that's for `/triage`.
 
 Reply with the issue URL.

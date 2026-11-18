@@ -8,6 +8,12 @@ Prompts are often dictated, so expect transcription errors: misheard names, repe
 
 Never cite a GitHub issue or PR by number alone. Follow the number with a brief summary in parentheses, e.g. `#82 (document branching rule)`; prefix the repo when it isn't the current one, e.g. `homekube#82 (document branching rule)`. This applies to replies, commits, PR bodies and issue comments. Closing keywords still work: `Closes #12 (drop vendored skills)`.
 
+## Issue labels
+
+Every repo uses the mattpocock-skills triage labels: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`; category labels `bug`, `enhancement`. A repo's `CLAUDE.md` may add labels of its own.
+
+`ready-for-agent` means an agent may implement it unattended, so beyond being fully specified the fix must be unambiguous, reversible and PR-only, with no open design decision and no physical or external-account step. Check this before applying the label, including when a skill applies it automatically; if it doesn't hold, use `needs-triage` or `ready-for-human`.
+
 ## Git
 
 **Never run `git push` without explicit user approval in the current message.**
