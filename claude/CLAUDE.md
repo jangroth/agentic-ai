@@ -18,6 +18,8 @@ Every repo uses the mattpocock-skills triage labels: `needs-triage`, `needs-info
 
 **Never run `git push` without explicit user approval in the current message.**
 
+Never commit to `main`. Every change reaches it through a PR, rebased onto `main` before merging (GitHub's "Update with rebase" will do when there's no conflict) and merged with a merge commit, never squashed or rebase-merged. A repo's `CLAUDE.md` states only its exceptions. `herminator-state` is exempt: it only takes the hourly export's direct commits to `main`.
+
 ## Code Comments
 
 Comments must be sparse and concise. Never explain the history of a change, or explain general functionality as if to a student — assume the reader can read code and already understands how the pieces fit together. A comment states a non-obvious constraint or invariant in as few words as possible, not a narrative.
