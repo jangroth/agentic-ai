@@ -49,7 +49,7 @@ install-dry-run:
 	scripts/install.sh --dry-run
 
 ###Skills
-## List all skills and commands across all scopes, ordered by scope
+## List skills, commands and agents across all scopes and plugins; fails on broken links
 list-all:
 	@scripts/list_all.sh
 
