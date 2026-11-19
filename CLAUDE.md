@@ -1,8 +1,4 @@
-# CLAUDE.md
-
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Overview
+# agentic-ai
 
 Personal Claude Code configuration: skills, commands, settings, plugins and user-level `CLAUDE.md`, installed into `~/.claude/` by `make install`.
 
