@@ -4,9 +4,9 @@
 
 Prompts are often dictated, so expect transcription errors: misheard names, repeated words, homophones. Read for intent and map near-misses to the names they most likely mean (repos, files, tools, people). Ask only when two readings would lead to different actions. Write the correct name in files, commits and issues, never the misheard term.
 
-## Referring to issues
+## Referring to issues and ADRs
 
-Never cite a GitHub issue or PR by number alone. Follow the number with a brief summary in parentheses, e.g. `#82 (document branching rule)`; prefix the repo when it isn't the current one, e.g. `homekube#82 (document branching rule)`. This applies to replies, commits, PR bodies and issue comments. Closing keywords still work: `Closes #12 (drop vendored skills)`.
+Cite a GitHub issue, PR or ADR by its number followed by a brief summary in parentheses, e.g. `#82 (document branching rule)` or `ADR-0003 (merge commits only)`; prefix the repo when it isn't the current one, e.g. `homekube#82 (document branching rule)`. This applies to replies, commits, PR bodies, issue comments and docs. Closing keywords still work: `Closes #12 (drop vendored skills)`.
 
 ## Times
 
